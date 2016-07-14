@@ -1,0 +1,17 @@
+# OS or Editor folders
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
+
+# Folders to ignore
+.vagrant
+storage
+
+db.sql
+public/index.html
+_ide_helper.php
