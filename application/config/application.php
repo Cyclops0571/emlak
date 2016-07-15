@@ -79,7 +79,7 @@ return array(
       | Lang library as the default language when doing string localization.
       |
      */
-    'language' => 'usa',
+    'language' => 'tr',
     /*
       |--------------------------------------------------------------------------
       | Supported Languages
@@ -90,19 +90,10 @@ return array(
       | the default language will automatically be set to that language.
       |
      */
-    'languages' => array(
-	'usa',
-	'tr', 
-	'en',
-//	'de',
-    ),
+    'languages' => array(),
+
     // Languages with ID for quick lookup
-    'langs' => array(
-	'tr' => 1,
-	'en' => 2,
-//	'de' => 3,
-	'usa' => 4,
-    ),
+    'langs' => array(),
     /*
       |--------------------------------------------------------------------------
       | SSL Link Generation

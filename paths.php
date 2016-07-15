@@ -46,7 +46,7 @@ $paths['bundle'] = '../bundles';
 // --------------------------------------------------------------
 // The path to the storage directory.
 // --------------------------------------------------------------
-$paths['storage'] = '../storage';
+$paths['storage'] = 'storage';
 
 // --------------------------------------------------------------
 // The path to the public directory.

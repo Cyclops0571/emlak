@@ -46,6 +46,9 @@ Route::post("/office/properties", "home@officeProperties");
 Route::post("/property/detail/(:num)", "home@propertyDetail");
 Route::post("/user/detail/(:num)", "home@userDetail");
 Route::post("/application/detail", "home@applicationDetail");
+Route::get("/login", "login@index");\
+Route::post("/login", array('as' => 'loginPost', 'uses' => "login@index") );
+Route::post("/service/token", "home@token");
 
 /*
 |--------------------------------------------------------------------------

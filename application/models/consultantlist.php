@@ -16,7 +16,7 @@ class ConsultantList
         /** @var ConsultantList $result */
 
         foreach($result->items as $item) {
-            $this->consultants[] = new Consultant($item);
+            $this->consultants[] = new ConsultantRemote($item);
         }
     }
 }

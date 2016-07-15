@@ -9,30 +9,29 @@ class Home_Controller extends Controller
         parent::__construct();
     }
 
-    public function home() {
-        echo "indexe dustum...";
-        exit;
-    }
-
-    public function get_home() {
+    public function get_home()
+    {
         $token = $this->serviceGetToken();
         echo $this->getUserList($token);
     }
 
-    public function post_home() {
+    public function post_home()
+    {
         echo "indexe dustum...";
         exit;
     }
 
-    public function post_userDetail($id) {
+    public function post_userDetail($id)
+    {
         $token = $this->serviceGetToken();
         echo $this->getUserDetail($token, $id);
     }
 
-    public function post_officeProperties() {
+    public function post_officeProperties()
+    {
         $rules = array("UserId" => "required|integer");
         $validator = Laravel\Validator::make(\Laravel\Input::all(), $rules);
-        if(!$validator->passes()) {
+        if (!$validator->passes()) {
             return json_encode(array('error' => $validator->errors->first()));
         }
 
@@ -43,7 +42,8 @@ class Home_Controller extends Controller
         return json_encode($estateList->items);
     }
 
-    private function serviceGetToken() {
+    private function serviceGetToken()
+    {
         $credentials = array();
 
         // Hürdoğan Çalgır "UserBaseId":1501
@@ -55,54 +55,66 @@ class Home_Controller extends Controller
         curl_setopt($ch, CURLOPT_URL, Emlakurl::token);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($credentials));
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($ch);
         curl_close($ch);
         return new Token($response);
     }
 
-    private function getUserList(Token $token) {
+    private function getUserList(Token $token)
+    {
         $parameters = array();
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, Emlakurl::UserList);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($parameters));
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array('Content-Type: application/json', $token->getBearer()));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $token->getBearer()));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
         return $response;
     }
 
-    private function getUserDetail(Token $token, $id) {
+    private function getUserDetail(Token $token, $id)
+    {
         $parameters = array();
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, str_replace('(:num)', $id, Emlakurl::UserDetail));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($parameters));
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array('Content-Type: application/json', $token->getBearer()));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $token->getBearer()));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
         return $response;
     }
 
-    public function post_propertyDetail($id) {
+    public function post_propertyDetail($id)
+    {
         $token = $this->serviceGetToken();
         $parameters = array();
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, str_replace('(:num)', $id, Emlakurl::EstateDetail));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($parameters));
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array('Content-Type: application/json', $token->getBearer()));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $token->getBearer()));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
         return $response;
     }
 
-    public function post_applicationDetail() {
+    public function post_applicationDetail()
+    {
+        $rules = array(
+            "UserId" => 'required|integer',
+        );
+        $v = \Laravel\Validator::make(\Laravel\Input::all(), $rules);
+        if ($v->fails()) {
+            return MyResponse::error($v->errors->first());
+        }
+        //571571
         $detailLink = array();
         $detailLink["android"] = "Playstore Linki gelecek.";
         $detailLink["ios"] = "App Store Linki gelecek.";
