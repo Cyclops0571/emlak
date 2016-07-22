@@ -20,5 +20,5 @@ class MyUser extends Eloquent
 {
     public static $timestamps = true;
     public static $table = 'MyUser';
-    public static $key = 'muUserID';
+    public static $key = 'myUserID';
 }

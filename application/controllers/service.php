@@ -9,8 +9,13 @@
 class Service_Controller extends Controller
 {
     public $restful = true;
+    /**
+     * @var Remoteservice
+     */
+    private $remoteService;
     public function __construct()
     {
+        $this->remoteService = new Remoteservice();
         parent::__construct();
     }
 
@@ -50,5 +55,51 @@ class Service_Controller extends Controller
             $clientDeviceToken->save();
         }
         return MyResponse::success();
+    }
+
+    public function post_userDetail($id)
+    {
+        echo $this->remoteService->userDetail($id);
+    }
+
+    public function post_officeProperties()
+    {
+        $rules = array("UserId" => "required|integer");
+        $validator = Laravel\Validator::make(\Laravel\Input::all(), $rules);
+        if (!$validator->passes()) {
+            return json_encode(array('error' => $validator->errors->first()));
+        }
+
+        $parameters = Laravel\Input::all();
+        $estateList = $this->remoteService->estateList($parameters);
+        return json_encode($estateList->items);
+    }
+
+
+    public function post_userList()
+    {
+        return $this->remoteService->userList();
+    }
+
+
+    public function post_propertyDetail($id)
+    {
+        return $this->remoteService->estateDetail($id);
+    }
+
+    public function post_applicationDetail()
+    {
+        $rules = array(
+            "UserId" => 'required|integer',
+        );
+        $v = \Laravel\Validator::make(\Laravel\Input::all(), $rules);
+        if ($v->fails()) {
+            return MyResponse::error($v->errors->first());
+        }
+        //571571
+        $detailLink = array();
+        $detailLink["android"] = "Playstore Linki gelecek.";
+        $detailLink["ios"] = "App Store Linki gelecek.";
+        return json_encode($detailLink);
     }
 }

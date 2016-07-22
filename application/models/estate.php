@@ -146,4 +146,7 @@ class Estate
         $this->ViewCount = $item->ViewCount;
     }
 
+    public function getInfo() {
+        return $this->AdBaseId . " - " . $this->Title . " - " . $this->FormattedPrice . $this->Currency;
+    }
 }

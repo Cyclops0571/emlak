@@ -13,8 +13,6 @@ return array(
     'login_button_resetmypassword' => 'Parolamı sıfırla',
     'login_forgotmypassword' => 'Parolamı Unuttum',
     'login_goback' => 'Geri Dön',
-    'login_error' => 'Hatalı kullanıcı bilgisi girdiniz!',
-    'login_error_expiration' => 'uygulamanızın geçerlilik süresi sonlanmıştır!',
     'login_email_subject' => 'Gale Press parola sıfırlama e-postası',
     'login_email_message' => "Sayın :firstname :lastname, \n\n" .
         "Kullanıcı Adınız :username, \n\n" .
@@ -111,7 +109,7 @@ return array(
     'mydetail' => 'Kullanıcı Bilgilerim',
     'pushnotify_caption' => 'BİLDİRİM GÖNDER',
     'pushnotify_detail' => 'Bildirim Metni',
-    'pushnotify_send' => 'Gönder',
+    'push_notify_send' => 'Gönder',
 
     'users_caption' => 'Kullanıcılar',
     'users_caption_detail' => 'Kullanıcı Detayı',

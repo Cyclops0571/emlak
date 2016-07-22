@@ -1,7 +1,5 @@
 /* global notification, route */
 var currentLanguage = '';
-var notification = undefined;
-var route = undefined;
 ///////////////////////////////////////////////////////////////////////////////////////
 // NOTIFICATION
 var sNotification = new function () {
@@ -18,7 +16,8 @@ var sNotification = new function () {
                 'validation': 'There are areas that need to be filled!',
                 'loading': 'Loading...',
                 'success': 'The operation was successful.',
-                'failure': 'An error occurred while performing the operation. Please try again later.'
+                'failure': 'An error occurred while performing the operation. Please try again later.',
+                'server_error': 'Server Error'
             };
         }
 
@@ -253,7 +252,7 @@ var sAjax = new function () {
                 }
             },
             error: function () {
-                sNotification.failure("Server Error At: " + url);
+                sNotification.failure(notification['server_error']);
             }
         });
 
@@ -356,9 +355,13 @@ var sCommon = new function () {
 
     this.save = function (url, fSuccess, formID) {
         if (typeof fSuccess !== 'function') {
+            /**
+             *
+             * @param {{msg: string}} response
+             */
             fSuccess = function (response) {
-                if (typeof response !== 'undefined' && typeof response.successMsg !== 'undefined') {
-                    sNotification.success(response.successMsg);
+                if (typeof response !== 'undefined' && typeof response.msg !== 'undefined') {
+                    sNotification.success(response.msg);
                 } else {
                     sNotification.success();
                 }
@@ -424,6 +427,7 @@ var sCommon = new function () {
 
 sLink = new function () {
     this.getLinkToRoute = function (route) {
-        return currentLanguage.length > 0 ? '/' + currentLanguage + '/' + route : '/' + route
+        route = route.lastIndexOf("/", 0) === 0 ? route : '/' + route;
+        return currentLanguage.length > 0 ? '/' + currentLanguage + route : route
     }
 };

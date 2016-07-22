@@ -75,7 +75,7 @@ return array(
     'payment_count' => 12,
     'rowcount' => 100,
     'passphrase' => '1234',
-    'google_api_key' => 'AIzaSyCj2v2727lBWLeXbgM_Hw_VEQgzjDgb8KY',
+    'google_api_key' => 'AIzaSyD9RoWbW2mTX2fKnzlzNJ3vb5yVxUv7INU',
     'testdeneme_task' => 1,
     'backupdatabase_task' => 2,
     'createinteractivepdf_task' => 3,

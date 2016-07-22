@@ -12,7 +12,8 @@ return array(
     'forgotmypassword' => 'parolami-unuttum',
     'resetmypassword' => 'parolami-sifirla',
     'logout' => 'cikis',
-    'home' => 'anasayfa',
+    'home' => '/',
+    'notification_save' => 'notification/save',
 
     'users' => 'kullanicilar',
     'users_new' => 'kullanicilar/yeni',
@@ -21,12 +22,7 @@ return array(
     'users_send' => 'kullanicilar/gonder',
     'users_delete' => 'kullanicilar/sil',
 
-    'managements_list' => 'managements/list',
-    'managements_save' => 'managements/save',
-
     'sign_up' => 'musteri/kaydol',
     'forgot_password' => 'musteri/parolahatirlatma',
     'sign_in' => 'musteri/giris',
-
-    'payment_card_info' => 'odeme/kart-bilgisi',
 );

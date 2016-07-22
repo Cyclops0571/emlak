@@ -8,7 +8,7 @@
  */
 class EstateList extends ListResponse
 {
-    /** @var   */
+    /** @var Estate[] $items  */
     public $items = array();
     /** @var  Token $token */
     protected $token;
@@ -22,8 +22,10 @@ class EstateList extends ListResponse
         $response = $this->makeRequest();
         $this->checkResponse($response);
         $this->setItems($response);
-        for($i = 1; $i < $this->TotalPageCount; $i++) {
-            $parameters['PageIndex'] = $i;
+        for($i = 2; $i <= $this->TotalPageCount; $i++) {
+            $this->parameters['PageIndex'] = $i;
+            $response = $this->makeRequest();
+            $this->setItems($response);
         }
     }
 

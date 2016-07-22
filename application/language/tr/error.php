@@ -11,4 +11,5 @@ return array(
     "invalid_excel_file_two_rows" => "Yüklediğiniz excel dosyası geçersiz. (Dosya en az iki satır olmalı.)",
     'unknown_component_type' => "Bilinmeyen interactif öğe tipi",
     'compoenent_not_found' => "Eklenilen interactif öğe bulunamadı",
+    'login' => 'Hatalı kullanıcı bilgisi girdiniz!',
 );

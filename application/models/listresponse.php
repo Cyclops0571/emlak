@@ -22,6 +22,7 @@ abstract class ListResponse
 
     public function checkResponse($response)
     {
+//        var_dump($response); exit;
         $this->CurrentPageIndex = $response->CurrentPageIndex;
         $this->PageSize = $response->PageSize;
         $this->TotalItemCount = $response->TotalItemCount;
@@ -42,7 +43,7 @@ abstract class ListResponse
         $response = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($response);
-        if($result->ApiResult != 0) {
+        if(!isset($result->ApiResult) || (isset($result->ApiResult) && $result->ApiResult != 0)) {
             throw new Exception("Unsuccessful Request");
         }
 

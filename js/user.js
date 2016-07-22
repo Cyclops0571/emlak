@@ -3,6 +3,16 @@
  */
 ///////////////////////////////////////////////////////////////////////////////////////
 // USER
+var x = function x(z){
+    console.log(z);
+    if (z > 0) {
+        setImmediate((function(newZ){
+            return function(){
+                x(newZ);
+            };
+        })(z-1));
+    }
+};
 var sUser = new function () {
     this.objectName = "users";
 
@@ -14,7 +24,7 @@ var sUser = new function () {
         if (validate) {
             sNotification.loader();
             var u =  sLink.getLinkToRoute(route["login"]);
-            var data = sForm.serialize(frm) + "&LocalTime=" + (new Date()).getTime() / 1000;
+            var data = sForm.serialize(frm) + "&localTime=" + (new Date()).getTime() / 1000;
             var successFunction = function () {
                 sNotification.success();
                 window.location.href = sLink.getLinkToRoute(route["home"]);

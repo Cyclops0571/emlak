@@ -41,14 +41,20 @@ Route::get('(:any)/(:any)', array('do' => function(){
 //$csrf = Config::get('custom.csrf');
 
 // <editor-fold defaultstate="collapsed" desc="Test">
-Route::get("/", "home@home");
-Route::post("/office/properties", "home@officeProperties");
-Route::post("/property/detail/(:num)", "home@propertyDetail");
-Route::post("/user/detail/(:num)", "home@userDetail");
-Route::post("/application/detail", "home@applicationDetail");
-Route::get("/login", "login@index");\
-Route::post("/login", array('as' => 'loginPost', 'uses' => "login@index") );
-Route::post("/service/token", "home@token");
+Route::any("/test", 'test@index');
+Route::get("/", array('as' => 'homeIndex', 'before' => 'auth', 'uses'=> "home@index"));
+Route::post("/notification/save", array('as' => 'notificationSave',  'uses'=> "notification@save"));
+Route::post("/office/properties", "service@officeProperties");
+Route::post("/property/detail/(:num)", "service@propertyDetail");
+Route::post("/user/detail/(:num)", "service@userDetail");
+Route::post("/application/detail", "service@applicationDetail");
+Route::post("/user/list", "service@userList");
+
+Route::any("/login", array('as' => 'loginPost', 'uses' => "login@index") );
+Route::any("/giris", array('as' => 'loginPostTr', 'uses' => "login@index") );
+
+Route::post("/service/token", "service@token");
+Route::get("/task/pushnotification", "task@pushNotification");
 
 /*
 |--------------------------------------------------------------------------
