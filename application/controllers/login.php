@@ -34,7 +34,6 @@ class Login_Controller extends Controller
             ->first();
         $loginResult = Auth::attempt(array('username' => $username, 'password' => $password, 'statusID' => eStatus::Active, 'remember' => true));
         if ($loginResult) {
-            Cookie::forever('DSCATALOG_USERNAME', $user->password);
             $result =  array(
                 "success" => true,
                 "msg" => (string) __('common.login_success_redirect')

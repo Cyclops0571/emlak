@@ -20,7 +20,10 @@ class Home_Controller extends Controller
         $data = array();
         $data["estateList"] = $estateList;
         return View::make('home.index', $data);
-        
+    }
 
+    public function post_logout() {
+        Auth::logout();
+        return MyResponse::success();
     }
 }

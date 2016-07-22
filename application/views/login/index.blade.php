@@ -1,9 +1,6 @@
 @layout('master')
 
 @section('content')
-    <?php
-    $cookie = Cookie::get('DSCATALOG_USERNAME', '');
-    ?>
     {{ Form::open(\Laravel\URL::to('loginPost'), 'POST') }}
     {{ Form::token() }}
 
@@ -16,7 +13,7 @@
                     <input class="form-control txt required" type="text"
                            placeholder="{{ __('common.users_username') }}" name="username"
                            onKeyPress="return sForm.bindEnterKey(event, sUser.login);"
-                           value="{{ $cookie }}"/>
+                           value=""/>
                     {{ $errors->first('Username', '<p class="error">:message</p>') }}
                 </div>
             </div>

@@ -35,6 +35,14 @@
         </div>
     </div>
     @_yield('content')
+
+    <?php if(Auth::user()): ?>
+    <div class="row margin-top-50">
+        <div class="col-md-12">
+            <input type="button" class="btn btn-danger btn-lg btn-block" value="Çıkış" onclick="sUser.logout();">
+        </div>
+    </div>
+    <?php endif; ?>
 </div>
 <script type="text/javascript">
     $('select').select2();

@@ -3,14 +3,14 @@
  */
 ///////////////////////////////////////////////////////////////////////////////////////
 // USER
-var x = function x(z){
+var x = function x(z) {
     console.log(z);
     if (z > 0) {
-        setImmediate((function(newZ){
-            return function(){
+        setImmediate((function (newZ) {
+            return function () {
                 x(newZ);
             };
-        })(z-1));
+        })(z - 1));
     }
 };
 var sUser = new function () {
@@ -23,16 +23,25 @@ var sUser = new function () {
         var validate = sForm.validate(frm);
         if (validate) {
             sNotification.loader();
-            var u =  sLink.getLinkToRoute(route["login"]);
+            var u = sLink.getLinkToRoute(route["login"]);
             var data = sForm.serialize(frm) + "&localTime=" + (new Date()).getTime() / 1000;
             var successFunction = function () {
                 sNotification.success();
                 window.location.href = sLink.getLinkToRoute(route["home"]);
             };
-            sAjax.request(u,data, successFunction);
+            sAjax.request(u, data, successFunction);
         } else {
             sNotification.validation();
         }
+    };
+    this.logout = function () {
+        var u = sLink.getLinkToRoute(route['logout']);
+        var data = undefined;
+        var successCallback = function () {
+            sNotification.success();
+            window.location.href = sLink.getLinkToRoute(route["home"]);
+        };
+        sAjax.request(u, data, successCallback);
     };
 
     this.forgotMyPassword = function () {
@@ -75,7 +84,9 @@ var sUser = new function () {
 
             var u = sLink.getLinkToRoute(route["resetmypassword"]);
             var d = sForm.serialize(frm);
-            var successCallback = function() {sNotification.success(null, ret.msg);};
+            var successCallback = function () {
+                sNotification.success(null, ret.msg);
+            };
             sAjax.request(u, d, successCallback);
         } else {
             sNotification.validation();

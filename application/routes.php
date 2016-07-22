@@ -49,7 +49,7 @@ Route::post("/property/detail/(:num)", "service@propertyDetail");
 Route::post("/user/detail/(:num)", "service@userDetail");
 Route::post("/application/detail", "service@applicationDetail");
 Route::post("/user/list", "service@userList");
-
+Route::post((string)__('route.logout'), 'home@logout');
 Route::any("/login", array('as' => 'loginPost', 'uses' => "login@index") );
 Route::any("/giris", array('as' => 'loginPostTr', 'uses' => "login@index") );
 

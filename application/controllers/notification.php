@@ -41,6 +41,6 @@ class Notification_Controller extends Controller
             $notificationDevice->save();
         }
 
-        return json_encode(array("success" => true));
+        return MyResponse::success();
     }
 }
