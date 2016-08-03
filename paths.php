@@ -19,7 +19,6 @@
 | merge in that environment's configuration files.
 |
 */
-
 $environments = array(
 
     'local' => array('http://localhost*', '*.dev', '*vagrant*', '*mygalepress.*'),
@@ -36,12 +35,12 @@ $paths['app'] = 'application';
 // --------------------------------------------------------------
 // The path to the Laravel directory.
 // --------------------------------------------------------------
-$paths['sys'] = '../laravel';
+$paths['sys'] = '../../laravel';
 
 // --------------------------------------------------------------
 // The path to the bundles directory.
 // --------------------------------------------------------------
-$paths['bundle'] = '../bundles';
+$paths['bundle'] = '../../bundles';
 
 // --------------------------------------------------------------
 // The path to the storage directory.
@@ -51,7 +50,7 @@ $paths['storage'] = 'storage';
 // --------------------------------------------------------------
 // The path to the public directory.
 // --------------------------------------------------------------
-$paths['public'] = '../public';
+$paths['public'] = '../';
 
 // *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 // END OF USER CONFIGURATION. HERE BE DRAGONS!
